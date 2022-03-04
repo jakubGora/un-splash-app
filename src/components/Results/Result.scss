@@ -1,0 +1,21 @@
+.Result {
+  height: 100%;
+  width: 100%;
+  min-width: 370px;
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  flex-direction: column;
+  .content {
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+}

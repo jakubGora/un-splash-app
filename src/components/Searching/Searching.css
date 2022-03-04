@@ -1,0 +1,81 @@
+.Searching {
+  width: 100%;
+  min-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  height: 3rem;
+  border-radius: 0.3rem;
+}
+
+.Searching form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Searching form input {
+  height: 100%;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  padding: 1rem;
+}
+
+.Searching form input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  outline: none;
+  padding: 1rem;
+  padding: 0.1rem;
+}
+
+.Searching form input[type="submit"] {
+  width: 0%;
+  margin: 0;
+  padding: 0;
+}
+
+.Searching .searchBt {
+  padding: 1rem;
+  height: 100%;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  width: 3rem;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Searching .searchBt img {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  -webkit-filter: invert(40%);
+          filter: invert(40%);
+}
+
+.Searching .searchBt:hover {
+  background-color: rgba(0, 0, 0, 0.103);
+  border-radius: 0.5rem;
+}
+/*# sourceMappingURL=Searching.css.map */
