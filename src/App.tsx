@@ -17,13 +17,12 @@ function App() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     unsplash.search
       .getPhotos({
         query: searchContent,
         page: page,
         perPage: 10,
-        color: "green",
-        orientation: "portrait",
       })
       .then((result) => {
         if (result.errors) {
@@ -38,7 +37,6 @@ function App() {
   }, [searchContent, page]);
   useEffect(() => {
     setPage(1);
-    window.scrollTo(0, 0);
   }, [searchContent]);
 
   return (

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { createApi } from "unsplash-js";
 import { Photos } from "unsplash-js/dist/methods/search/types/response";
 import Searching from "../Searching/Searching";
+import PhotoDetails from "./PhotoDetails/PhotoDetails";
 import PhotosList from "./PhotosList/PhotosList";
 import ProposList from "./ProposList/ProposList";
 
@@ -23,26 +25,59 @@ const Result = ({
   page,
   totalPages,
 }: IResultComponent) => {
-  const style = {
+  const [propos, setPropos] = useState<string[]>([]);
+  const [currentPhotoId, setCurrentPhotoId] = useState<string>();
+  const styleSearching = {
     backgroundColor: "#dedede",
     borderRadius: "2rem",
     height: "2.5rem",
     width: "80%",
   };
-
+  const unsplash = createApi({
+    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
+  });
   const upperFirstLetter = (str: string) => {
     return str.replace(str[0], str[0].toUpperCase());
   };
 
+  useEffect(() => {
+    unsplash.topics
+      .list({
+        page: 1,
+        perPage: 12,
+      })
+      .then((result) => {
+        if (result.errors) {
+          // handle error here
+        } else {
+          setPropos(
+            result.response.results
+              .sort((b, a) => a.total_photos - b.total_photos)
+              .map((e) => e.title)
+          );
+        }
+      });
+  }, []);
+
   return (
     <div className="Result">
-      <Searching setSearchContent={setSearchContent} style={style}></Searching>
+      {currentPhotoId ? (
+        <PhotoDetails currentPhotoId={currentPhotoId}></PhotoDetails>
+      ) : null}
+      <Searching
+        setSearchContent={setSearchContent}
+        style={styleSearching}
+      ></Searching>
       <div className="content">
         <h1>{upperFirstLetter(searchContent)}</h1>
-        <ProposList setSearchContent={setSearchContent}></ProposList>
+        <ProposList
+          propos={propos}
+          setSearchContent={setSearchContent}
+        ></ProposList>
         <PhotosList
           setSearchContent={setSearchContent}
           photosPage={photosPage}
+          setCurrentPhotoId={setCurrentPhotoId}
         ></PhotosList>
       </div>
       <div className="sitesNr">

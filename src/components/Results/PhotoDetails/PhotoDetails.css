@@ -1,0 +1,175 @@
+.PhotoDetails {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.534);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.PhotoDetails button {
+  border: 0;
+  height: 80%;
+  width: 5vw;
+  font-size: 3rem;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.PhotoDetails button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.PhotoDetails .content {
+  background-color: white;
+  margin: 2.5vh;
+  width: 80vw;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.384);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.384);
+}
+
+.PhotoDetails .content .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(80vw - 2.5rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.PhotoDetails .content .top .buttonsTop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.PhotoDetails .content .top .buttonsTop button {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  border: 0;
+  padding: 0.7rem;
+  border: 1px solid #dddddd;
+  border-radius: 0.2rem;
+}
+
+.PhotoDetails .content .top .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.PhotoDetails .content .top .user img {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.PhotoDetails .content .top .user div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 0.5rem;
+}
+
+.PhotoDetails .content .photo {
+  width: 100%;
+  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.PhotoDetails .content .photo img {
+  width: 95%;
+  height: 100%;
+}
+
+.PhotoDetails .content .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  width: calc(80vw - 2.5rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.PhotoDetails .content .bottom .loc {
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.PhotoDetails .content .bottom .buttonsBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.PhotoDetails .content .bottom .buttonsBottom button {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  border: 0;
+  padding: 0.7rem;
+  border: 1px solid #dddddd;
+  border-radius: 0.2rem;
+}
+/*# sourceMappingURL=PhotoDetails.css.map */

@@ -61,6 +61,10 @@
   border-radius: 1rem;
 }
 
+.Result .sitesNr button {
+  background-color: #dedede;
+}
+
 .Result .sitesNr button:hover {
   -webkit-filter: brightness(50%);
           filter: brightness(50%);

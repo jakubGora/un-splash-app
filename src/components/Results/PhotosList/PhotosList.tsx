@@ -8,17 +8,23 @@ import "./PhotosList.css";
 interface IPhotosListComponent {
   photosPage?: Photos;
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
+  setCurrentPhotoId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const PhotosList = ({ photosPage, setSearchContent }: IPhotosListComponent) => {
-  useEffect(() => {
-    console.log(photosPage?.results);
-  }, [photosPage]);
+const PhotosList = ({
+  photosPage,
+  setSearchContent,
+  setCurrentPhotoId,
+}: IPhotosListComponent) => {
   return (
     <div className="PhotosList">
       {photosPage?.results.map((photo) => (
         <div key={photo.id} className="photoElem">
-          <img src={photo.urls.regular} alt={photo.id} />
+          <img
+            onClick={() => setCurrentPhotoId(photo.id)}
+            src={photo.urls.regular}
+            alt={photo.id}
+          />
 
           <div className="tags">
             {photo.tags.map((e: ITag, i) => (

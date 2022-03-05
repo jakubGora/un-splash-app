@@ -20,6 +20,7 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .PhotosList .photoElem .tags {
@@ -198,12 +199,12 @@
     grid-column-end: 9;
     -ms-grid-row: 7;
         grid-row-start: 7;
-    grid-row-end: 10;
+    grid-row-end: 12;
   }
   .PhotosList .photoElem:nth-of-type(10n) {
     -ms-grid-column: 1;
         grid-column-start: 1;
-    grid-column-end: 9;
+    grid-column-end: 5;
     -ms-grid-row: 10;
         grid-row-start: 10;
     grid-row-end: 12;

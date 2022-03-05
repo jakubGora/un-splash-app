@@ -4,16 +4,17 @@ import "./ProposList.css";
 
 interface IProposListComponent {
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
+  propos: string[];
 }
 
-const ProposList = ({ setSearchContent }: IProposListComponent) => {
+const ProposList = ({ propos, setSearchContent }: IProposListComponent) => {
   return (
     <div className="ProposList">
-      <div className="propo">Island</div>
-      <div className="propo">Beach</div>
-      <div className="propo">Sky</div>
-      <div className="propo">Tropical</div>
-      <div className="propo">Sea</div>
+      {propos.map((elem) => (
+        <div onClick={() => setSearchContent(elem)} className="propo">
+          {elem}
+        </div>
+      ))}
     </div>
   );
 };

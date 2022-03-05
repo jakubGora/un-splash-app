@@ -31,7 +31,6 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
             // handle error here
             console.log("error occurred: ", result.errors[0]);
           } else {
-            console.log(result.response.results);
             const photo = result.response.results
               .map((e) => {
                 if (
