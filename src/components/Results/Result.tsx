@@ -10,12 +10,18 @@ interface IResultComponent {
   searchContent: string;
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
   photosPage?: Photos;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  page: number;
+  totalPages: number;
 }
 
 const Result = ({
   searchContent,
   setSearchContent,
   photosPage,
+  setPage,
+  page,
+  totalPages,
 }: IResultComponent) => {
   const style = {
     backgroundColor: "#dedede",
@@ -34,7 +40,29 @@ const Result = ({
       <div className="content">
         <h1>{upperFirstLetter(searchContent)}</h1>
         <ProposList setSearchContent={setSearchContent}></ProposList>
-        <PhotosList photosPage={photosPage}></PhotosList>
+        <PhotosList
+          setSearchContent={setSearchContent}
+          photosPage={photosPage}
+        ></PhotosList>
+      </div>
+      <div className="sitesNr">
+        <button
+          onClick={() => {
+            setPage((e) => (e > 1 ? e - 1 : e));
+          }}
+        >
+          {"<"}
+        </button>
+        <div className="num">
+          {page ? page : 1}/{totalPages}
+        </div>
+        <button
+          onClick={() => {
+            setPage((e) => (e < totalPages ? e + 1 : e));
+          }}
+        >
+          {">"}
+        </button>
       </div>
     </div>
   );

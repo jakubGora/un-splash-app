@@ -10,6 +10,8 @@ import { Photos } from "unsplash-js/dist/methods/search/types/response";
 function App() {
   const [searchContent, setSearchContent] = useState<string>("");
   const [photosPage, setPhotosPage] = useState<Photos>();
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
   const unsplash = createApi({
     accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
   });
@@ -18,7 +20,7 @@ function App() {
     unsplash.search
       .getPhotos({
         query: searchContent,
-        page: 1,
+        page: page,
         perPage: 10,
         color: "green",
         orientation: "portrait",
@@ -30,9 +32,13 @@ function App() {
         } else {
           setPhotosPage(result.response);
           const photo = result.response;
-          console.log(photo);
+          setTotalPages(photo.total_pages);
         }
       });
+  }, [searchContent, page]);
+  useEffect(() => {
+    setPage(1);
+    window.scrollTo(0, 0);
   }, [searchContent]);
 
   return (
@@ -44,6 +50,9 @@ function App() {
           searchContent={searchContent}
           setSearchContent={setSearchContent}
           photosPage={photosPage}
+          setPage={setPage}
+          page={page}
+          totalPages={totalPages}
         ></Result>
       )}
     </div>

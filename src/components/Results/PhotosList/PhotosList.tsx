@@ -7,9 +7,13 @@ import "./PhotosList.css";
 
 interface IPhotosListComponent {
   photosPage?: Photos;
+  setSearchContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PhotosList = ({ photosPage }: IPhotosListComponent) => {
+const PhotosList = ({ photosPage, setSearchContent }: IPhotosListComponent) => {
+  useEffect(() => {
+    console.log(photosPage?.results);
+  }, [photosPage]);
   return (
     <div className="PhotosList">
       {photosPage?.results.map((photo) => (
@@ -17,17 +21,17 @@ const PhotosList = ({ photosPage }: IPhotosListComponent) => {
           <img src={photo.urls.regular} alt={photo.id} />
 
           <div className="tags">
-            {photo.tags.map((e: ITag, i) =>
-              e.type === "landing_page" ? (
-                <div key={i} className="tag">
-                  {e.title.includes(" ")
-                    ? e.title.substring(0, e.title.indexOf(" "))
-                    : e.title}
-                </div>
-              ) : (
-                ""
-              )
-            )}
+            {photo.tags.map((e: ITag, i) => (
+              <div
+                onClick={() => setSearchContent(e.title)}
+                key={i}
+                className="tag"
+              >
+                {e.title.includes(" ")
+                  ? e.title.substring(0, e.title.indexOf(" "))
+                  : e.title}
+              </div>
+            ))}
           </div>
         </div>
       ))}

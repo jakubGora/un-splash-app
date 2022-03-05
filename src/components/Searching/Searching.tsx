@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { createApi } from "unsplash-js";
 
 import "./Searching.css";
 interface ISearchingComponent {
@@ -8,16 +9,59 @@ interface ISearchingComponent {
 const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
   const searchIco = require("../../img/search.png");
   const [searchText, setSearchText] = useState<string>("");
-
-  const search = () => {
+  const [photoSet, setPhotoSet] = useState<string[]>([]);
+  const [helpBarActive, setHelpBarActive] = useState<boolean>(false);
+  const unsplash = createApi({
+    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
+  });
+  function search() {
     setSearchContent(searchText);
-  };
+  }
+
+  useEffect(() => {
+    if (searchText.length > 3)
+      unsplash.search
+        .getCollections({
+          query: searchText,
+          page: 1,
+          perPage: 50,
+        })
+        .then((result) => {
+          if (result.errors) {
+            // handle error here
+            console.log("error occurred: ", result.errors[0]);
+          } else {
+            console.log(result.response.results);
+            const photo = result.response.results
+              .map((e) => {
+                if (
+                  e.title
+                    .toLocaleLowerCase()
+                    .includes(searchText.toLocaleLowerCase())
+                )
+                  return e.title.toLocaleLowerCase();
+                else {
+                  return "";
+                }
+              })
+              .filter(
+                (e) =>
+                  e && e.toLocaleLowerCase() !== searchText.toLocaleLowerCase()
+              )
+              .sort((a, b) => a.length - b.length);
+            const photoSet = new Set(photo);
+            let array = Array.from(photoSet);
+            setPhotoSet(array);
+          }
+        });
+  }, [searchText]);
 
   return (
-    <div style={style} className="Searching">
-      <div onClick={() => search()} className="searchBt">
-        <img src={searchIco} alt="searchIco" />
-      </div>
+    <div
+      onBlur={() => setTimeout(() => setHelpBarActive(false), 300)}
+      style={style}
+      className="Searching"
+    >
       <form
         action="submit"
         onSubmit={(e) => {
@@ -25,6 +69,9 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
           search();
         }}
       >
+        <div onClick={() => search()} className="searchBt">
+          <img src={searchIco} alt="searchIco" />
+        </div>
         <input
           type="text"
           name="search"
@@ -32,9 +79,33 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
           onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search free high-resolution photos"
           id="search"
+          autoComplete="off"
+          autoFocus
+          onFocus={() => setHelpBarActive(true)}
         />
+
         <input type="submit" value=" " />
       </form>
+      <div className="help">
+        {helpBarActive && searchText.length > 3
+          ? photoSet.map((e, i) =>
+              i < 5 ? (
+                <div
+                  key={i}
+                  className="helpElem"
+                  onClick={() => {
+                    setSearchText(e);
+                    setSearchContent(e);
+                  }}
+                >
+                  {e}
+                </div>
+              ) : (
+                ""
+              )
+            )
+          : ""}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,41 @@
 .Searching {
   width: 100%;
   min-width: 300px;
+  max-width: 70rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  border-radius: 0.3rem;
+}
+
+.Searching form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3rem;
+}
+
+.Searching form .searchBt {
+  height: 100%;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  width: 3rem;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,16 +45,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: white;
-  height: 3rem;
-  border-radius: 0.3rem;
 }
 
-.Searching form {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.Searching form .searchBt img {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  -webkit-filter: invert(40%);
+          filter: invert(40%);
 }
 
 .Searching form input {
@@ -45,37 +78,46 @@
   padding: 0;
 }
 
-.Searching .searchBt {
-  padding: 1rem;
-  height: 100%;
-  margin: 0;
-  background-color: rgba(255, 255, 255, 0);
-  border: 0;
-  width: 3rem;
-  padding: 0;
-  cursor: pointer;
-  margin: 0;
+.Searching .help {
+  background-color: white;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+  width: calc(80vw);
+  min-width: 300px;
+  max-width: 70rem;
+  position: fixed;
+  border-radius: 0.3rem;
+  margin-top: 0.3rem;
+  -webkit-transform: translateY(calc(50% + 1.5rem));
+          transform: translateY(calc(50% + 1.5rem));
+}
+
+.Searching .help .helpElem {
+  border-radius: 0.3rem;
+  height: 3rem;
+  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  padding-left: 1rem;
 }
 
-.Searching .searchBt img {
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  -webkit-filter: invert(40%);
-          filter: invert(40%);
+.Searching .help .helpElem:hover {
+  background-color: #e9e9e9;
+  cursor: pointer;
 }
 
 .Searching .searchBt:hover {
   background-color: rgba(0, 0, 0, 0.103);
   border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 840px) {
+  .Searching .help {
+    width: calc(100vw - 10rem);
+  }
 }
 /*# sourceMappingURL=Searching.css.map */

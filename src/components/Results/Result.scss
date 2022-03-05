@@ -18,4 +18,23 @@
       font-size: 2.5rem;
     }
   }
+  .sitesNr {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    button,
+    .nr {
+      border: 0;
+      padding: 1rem;
+      margin: 1rem;
+      font-size: 1.3rem;
+      border-radius: 1rem;
+    }
+    button:hover {
+      filter: brightness(50%);
+      cursor: pointer;
+    }
+  }
 }
