@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { createApi } from "unsplash-js";
 import { Photos } from "unsplash-js/dist/methods/search/types/response";
 import Searching from "../Searching/Searching";
 import PhotoDetails from "./PhotoDetails/PhotoDetails";
@@ -12,8 +11,8 @@ interface IResultComponent {
   searchContent: string;
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
   photosPage?: Photos;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  page: number;
+  setCurrentPageNr: React.Dispatch<React.SetStateAction<number>>;
+  currentPageNr: number;
   totalPages: number;
 }
 
@@ -21,8 +20,8 @@ const Result = ({
   searchContent,
   setSearchContent,
   photosPage,
-  setPage,
-  page,
+  setCurrentPageNr,
+  currentPageNr,
   totalPages,
 }: IResultComponent) => {
   const [propos, setPropos] = useState<string[]>([]);
@@ -82,17 +81,17 @@ const Result = ({
       <div className="sitesNr">
         <button
           onClick={() => {
-            setPage((e) => (e > 1 ? e - 1 : e));
+            setCurrentPageNr((e) => (e > 1 ? e - 1 : e));
           }}
         >
           {"<"}
         </button>
         <div className="num">
-          {page ? page : 1}/{totalPages}
+          {currentPageNr ? currentPageNr : 1}/{totalPages}
         </div>
         <button
           onClick={() => {
-            setPage((e) => (e < totalPages ? e + 1 : e));
+            setCurrentPageNr((e) => (e < totalPages ? e + 1 : e));
           }}
         >
           {">"}

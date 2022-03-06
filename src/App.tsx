@@ -3,14 +3,12 @@ import { unsplash } from "./API/Unsplash";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Result from "./components/Results/Result";
-import { IPhoto } from "./components/Interfaces/Interfaces";
-import { createApi } from "unsplash-js";
 import { Photos } from "unsplash-js/dist/methods/search/types/response";
 
 function App() {
   const [searchContent, setSearchContent] = useState<string>("");
   const [photosPage, setPhotosPage] = useState<Photos>();
-  const [page, setPage] = useState<number>(1);
+  const [currentPageNr, setCurrentPageNr] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ function App() {
     unsplash.search
       .getPhotos({
         query: searchContent,
-        page: page,
+        page: currentPageNr,
         perPage: 10,
       })
       .then((result) => {
@@ -28,10 +26,10 @@ function App() {
           setTotalPages(photo.total_pages);
         }
       });
-  }, [searchContent, page]);
+  }, [searchContent, currentPageNr]);
 
   useEffect(() => {
-    setPage(1);
+    setCurrentPageNr(1);
   }, [searchContent]);
 
   return (
@@ -43,8 +41,8 @@ function App() {
           searchContent={searchContent}
           setSearchContent={setSearchContent}
           photosPage={photosPage}
-          setPage={setPage}
-          page={page}
+          setCurrentPageNr={setCurrentPageNr}
+          currentPageNr={currentPageNr}
           totalPages={totalPages}
         ></Result>
       )}

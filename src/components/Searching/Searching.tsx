@@ -16,7 +16,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
   const closeIco = require("../../img/close.png");
 
   const mapFilterSort = (result: Basic[]) => {
-    let date = result
+    let data = result
       .map((e) =>
         e.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
           ? e.title.toLocaleLowerCase()
@@ -27,7 +27,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
       )
       .sort((a, b) => a.length - b.length);
 
-    let setData = new Set(date);
+    let setData = new Set(data);
     let arrayData = Array.from(setData);
     return arrayData;
   };
