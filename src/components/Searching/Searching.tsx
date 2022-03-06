@@ -20,7 +20,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
   }
 
   useEffect(() => {
-    if (searchText.length > 3)
+    if (searchText.length >= 3)
       unsplash.search
         .getCollections({
           query: searchText,
@@ -94,7 +94,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
         )}
       </form>
       <div className="help">
-        {helpBarActive && searchText.length > 3
+        {helpBarActive && searchText.length >= 3
           ? photoSet.map((e, i) =>
               i < 5 ? (
                 <div
@@ -112,7 +112,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
               )
             )
           : ""}
-        {helpBarActive && searchText.length > 3 && photoSet.length === 0 ? (
+        {helpBarActive && searchText.length >= 3 && photoSet.length === 0 ? (
           <div className="helpElemNull">Brak podpowiedzi :(</div>
         ) : (
           ""
