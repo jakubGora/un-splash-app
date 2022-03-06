@@ -11,6 +11,7 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
   const [searchText, setSearchText] = useState<string>("");
   const [photoSet, setPhotoSet] = useState<string[]>([]);
   const [helpBarActive, setHelpBarActive] = useState<boolean>(false);
+  const closeIco = require("../../img/close.png");
   const unsplash = createApi({
     accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
   });
@@ -83,7 +84,14 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
           onFocus={() => setHelpBarActive(true)}
         />
 
-        <input type="submit" value=" " />
+        <input type="submit" value="" />
+        {searchText ? (
+          <button onClick={() => setSearchText("")}>
+            <img src={closeIco} alt="closeIco" />
+          </button>
+        ) : (
+          ""
+        )}
       </form>
       <div className="help">
         {helpBarActive && searchText.length > 3
@@ -104,6 +112,11 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
               )
             )
           : ""}
+        {helpBarActive && searchText.length > 3 && photoSet.length === 0 ? (
+          <div className="helpElemNull">Brak podpowiedzi :(</div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

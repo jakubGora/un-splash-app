@@ -27,6 +27,12 @@
 
     p {
       font-weight: 200;
+      span {
+        cursor: pointer;
+      }
+      span:hover {
+        text-shadow: 0 0 5px rgb(255, 255, 255);
+      }
     }
   }
 }

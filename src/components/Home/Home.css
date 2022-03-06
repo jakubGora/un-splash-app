@@ -37,4 +37,12 @@
 .Home .content p {
   font-weight: 200;
 }
+
+.Home .content p span {
+  cursor: pointer;
+}
+
+.Home .content p span:hover {
+  text-shadow: 0 0 5px white;
+}
 /*# sourceMappingURL=Home.css.map */

@@ -8,6 +8,7 @@
       grid-template-rows: repeat(11, 15rem);
   grid-gap: 0.5rem;
   margin-top: 1rem;
+  padding: 0.3rem;
 }
 
 .PhotosList .photoElem {
@@ -29,6 +30,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow-x: scroll;
 }
 
 .PhotosList .photoElem .tags .tag {
@@ -43,6 +45,10 @@
 .PhotosList .photoElem .tags .tag:hover {
   -webkit-filter: brightness(50%);
           filter: brightness(50%);
+}
+
+.PhotosList .photoElem ::-webkit-scrollbar {
+  width: 0;
 }
 
 @media screen and (max-width: 1200px) and (min-width: 600px) {

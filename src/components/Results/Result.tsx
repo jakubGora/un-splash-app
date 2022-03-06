@@ -62,7 +62,10 @@ const Result = ({
   return (
     <div className="Result">
       {currentPhotoId ? (
-        <PhotoDetails currentPhotoId={currentPhotoId}></PhotoDetails>
+        <PhotoDetails
+          currentPhotoId={currentPhotoId}
+          setCurrentPhotoId={setCurrentPhotoId}
+        ></PhotoDetails>
       ) : null}
       <Searching
         setSearchContent={setSearchContent}

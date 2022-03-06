@@ -10,8 +10,8 @@ interface IProposListComponent {
 const ProposList = ({ propos, setSearchContent }: IProposListComponent) => {
   return (
     <div className="ProposList">
-      {propos.map((elem) => (
-        <div onClick={() => setSearchContent(elem)} className="propo">
+      {propos.map((elem, i) => (
+        <div key={i} onClick={() => setSearchContent(elem)} className="propo">
           {elem}
         </div>
       ))}

@@ -5,18 +5,50 @@ import { Full } from "unsplash-js/dist/methods/photos/types";
 import "./PhotoDetails.css";
 
 interface IPhotoDetailsComponent {
-  currentPhotoId: string | undefined;
+  currentPhotoId: string;
+  setCurrentPhotoId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const PhotoDetails = ({ currentPhotoId }: IPhotoDetailsComponent) => {
+const PhotoDetails = ({
+  currentPhotoId,
+  setCurrentPhotoId,
+}: IPhotoDetailsComponent) => {
   const [details, setDetails] = useState<Full>();
-
+  const [zoom, setZoom] = useState<boolean>(false);
+  const monthNames = [
+    "styczeń",
+    "luty",
+    "marzec",
+    "kwiecień",
+    "maj",
+    "czerwiec",
+    "lipiec",
+    "sierpień",
+    "wrzesień",
+    "październik",
+    "listopad",
+    "grudzień",
+  ];
+  const likeIco = require("../../../img/like.png");
+  const plusIco = require("../../../img/plus (2).png");
+  const localIco = require("../../../img/tool.png");
+  const infoIco = require("../../../img/info.png");
+  const shareIco = require("../../../img/share.png");
+  const closeIco = require("../../../img/close.png");
+  const calendarIco = require("../../../img/calendar.png");
   const unsplash = createApi({
     accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
   });
 
+  const getDateFormat = (date: string | undefined) => {
+    if (date) {
+      const dat = new Date(date);
+      return monthNames[dat.getMonth() - 1] + " " + dat.getFullYear();
+    }
+  };
+
   useEffect(() => {
-    unsplash.photos.get({ photoId: "mtNweauBsMQ" }).then((result) => {
+    unsplash.photos.get({ photoId: currentPhotoId }).then((result) => {
       if (result.errors) {
         // handle error here
       } else {
@@ -28,38 +60,73 @@ const PhotoDetails = ({ currentPhotoId }: IPhotoDetailsComponent) => {
 
   return (
     <div className="PhotoDetails">
-      <button>{"<"}</button>
-      <div className="content">
-        <div className="top">
-          <div className="user">
-            <img src={details?.user.profile_image.small} alt="img" />
-            <div>
-              <h2>{details?.user.name}</h2>
-              <p>{details?.user.twitter_username}</p>
+      <div>
+        <div className="content">
+          <div className="top">
+            <div className="user">
+              <img src={details?.user.profile_image.small} alt="img" />
+              <div>
+                <h2>{details?.user.name}</h2>
+                <p>@{details?.user.username}</p>
+              </div>
+            </div>
+            <div className="buttonsTop">
+              <button>
+                <img src={likeIco} alt="like" />
+              </button>
+              <button>
+                <img src={plusIco} alt="plus" />
+              </button>
             </div>
           </div>
-          <div className="buttonsTop">
-            <button>Like</button>
-            <button>Add</button>
+
+          <div
+            style={{
+              backgroundImage: `url(${details?.urls.full})`,
+              backgroundSize: `${zoom ? "cover" : "contain"}`,
+              cursor: `${zoom ? "zoom-out" : "zoom-in"}`,
+            }}
+            onClick={() => setZoom(!zoom)}
+            className="photo"
+          ></div>
+
+          <div className="bottom">
+            <div className="loc">
+              <div>
+                <img src={localIco} alt="info" />
+                <p>
+                  {details?.location.name
+                    ? details?.location.name
+                    : "Brak informacji"}
+                </p>
+              </div>
+              <div>
+                <img src={calendarIco} alt="info" />
+                <p>
+                  {" "}
+                  {details?.created_at
+                    ? getDateFormat(details?.created_at)
+                    : "Brak informacji"}
+                </p>
+              </div>
+            </div>
+            <div className="buttonsBottom">
+              <button>
+                <img src={shareIco} alt="share" />
+                Share
+              </button>
+              <button>
+                <img src={infoIco} alt="info" />
+                Info
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="photo">
-          <img src={details?.urls.full} alt="photo" />
-        </div>
-
-        <div className="bottom">
-          <div className="loc">
-            {details?.location.city ? details?.location.city + ", " : ""}
-            {details?.location.country}
-          </div>
-          <div className="buttonsBottom">
-            <button>Share</button>
-            <button>Info</button>
-          </div>
-        </div>
+        <button onClick={() => setCurrentPhotoId(undefined)} className="X">
+          <img src={closeIco} alt="info" />
+        </button>
       </div>
-      <button>{">"}</button>
     </div>
   );
 };

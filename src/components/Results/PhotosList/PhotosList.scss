@@ -5,6 +5,7 @@
   grid-template-rows: repeat(11, 15rem);
   grid-gap: 0.5rem;
   margin-top: 1rem;
+  padding: 0.3rem;
   .photoElem {
     margin-right: 1rem;
     margin-bottom: 3rem;
@@ -19,6 +20,7 @@
       width: 100%;
       padding-top: 0.5rem;
       display: flex;
+      overflow-x: scroll;
       .tag {
         background-color: rgba(226, 226, 226, 0.5);
         color: rgb(122, 122, 122);
@@ -31,8 +33,12 @@
         filter: brightness(50%);
       }
     }
+    ::-webkit-scrollbar {
+      width: 0;
+    }
   }
 }
+
 @media screen and (max-width: 1200px) and (min-width: 600px) {
   .PhotosList {
     .photoElem:nth-of-type(1n) {
