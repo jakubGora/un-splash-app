@@ -5,7 +5,7 @@ import Searching from "../Searching/Searching";
 import PhotoDetails from "./PhotoDetails/PhotoDetails";
 import PhotosList from "./PhotosList/PhotosList";
 import ProposList from "./ProposList/ProposList";
-
+import { unsplash } from "../../API/Unsplash";
 import "./Result.css";
 
 interface IResultComponent {
@@ -33,9 +33,7 @@ const Result = ({
     height: "2.5rem",
     width: "80%",
   };
-  const unsplash = createApi({
-    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
-  });
+
   const upperFirstLetter = (str: string) => {
     return str.replace(str[0], str[0].toUpperCase());
   };
@@ -47,9 +45,7 @@ const Result = ({
         perPage: 12,
       })
       .then((result) => {
-        if (result.errors) {
-          // handle error here
-        } else {
+        if (!result.errors) {
           setPropos(
             result.response.results
               .sort((b, a) => a.total_photos - b.total_photos)

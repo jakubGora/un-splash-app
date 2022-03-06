@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createApi } from "unsplash-js";
+import { Basic } from "unsplash-js/dist/methods/collections/types";
 
+import { unsplash } from "../../API/Unsplash";
 import "./Searching.css";
 interface ISearchingComponent {
   setSearchContent: React.Dispatch<React.SetStateAction<string>>;
@@ -12,12 +14,23 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
   const [photoSet, setPhotoSet] = useState<string[]>([]);
   const [helpBarActive, setHelpBarActive] = useState<boolean>(false);
   const closeIco = require("../../img/close.png");
-  const unsplash = createApi({
-    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
-  });
-  function search() {
-    setSearchContent(searchText);
-  }
+
+  const mapFilterSort = (result: Basic[]) => {
+    let date = result
+      .map((e) =>
+        e.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+          ? e.title.toLocaleLowerCase()
+          : ""
+      )
+      .filter(
+        (e) => e && e.toLocaleLowerCase() !== searchText.toLocaleLowerCase()
+      )
+      .sort((a, b) => a.length - b.length);
+
+    let setData = new Set(date);
+    let arrayData = Array.from(setData);
+    return arrayData;
+  };
 
   useEffect(() => {
     if (searchText.length >= 3)
@@ -28,30 +41,9 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
           perPage: 50,
         })
         .then((result) => {
-          if (result.errors) {
-            // handle error here
-            console.log("error occurred: ", result.errors[0]);
-          } else {
-            const photo = result.response.results
-              .map((e) => {
-                if (
-                  e.title
-                    .toLocaleLowerCase()
-                    .includes(searchText.toLocaleLowerCase())
-                )
-                  return e.title.toLocaleLowerCase();
-                else {
-                  return "";
-                }
-              })
-              .filter(
-                (e) =>
-                  e && e.toLocaleLowerCase() !== searchText.toLocaleLowerCase()
-              )
-              .sort((a, b) => a.length - b.length);
-            const photoSet = new Set(photo);
-            let array = Array.from(photoSet);
-            setPhotoSet(array);
+          if (!result.errors) {
+            const photos = mapFilterSort(result.response.results);
+            setPhotoSet(photos);
           }
         });
   }, [searchText]);
@@ -66,10 +58,10 @@ const Searching = ({ setSearchContent, style }: ISearchingComponent) => {
         action="submit"
         onSubmit={(e) => {
           e.preventDefault();
-          search();
+          setSearchContent(searchText);
         }}
       >
-        <div onClick={() => search()} className="searchBt">
+        <div onClick={() => setSearchContent(searchText)} className="searchBt">
           <img src={searchIco} alt="searchIco" />
         </div>
         <input

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { unsplash } from "./API/Unsplash";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Result from "./components/Results/Result";
@@ -12,9 +12,6 @@ function App() {
   const [photosPage, setPhotosPage] = useState<Photos>();
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const unsplash = createApi({
-    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
-  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,16 +22,14 @@ function App() {
         perPage: 10,
       })
       .then((result) => {
-        if (result.errors) {
-          // handle error here
-          console.log("error occurred: ", result.errors[0]);
-        } else {
+        if (!result.errors) {
           setPhotosPage(result.response);
           const photo = result.response;
           setTotalPages(photo.total_pages);
         }
       });
   }, [searchContent, page]);
+
   useEffect(() => {
     setPage(1);
   }, [searchContent]);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createApi } from "unsplash-js";
 import { Full } from "unsplash-js/dist/methods/photos/types";
-
+import { unsplash } from "../../../API/Unsplash";
 import "./PhotoDetails.css";
 
 interface IPhotoDetailsComponent {
@@ -36,11 +36,8 @@ const PhotoDetails = ({
   const shareIco = require("../../../img/share.png");
   const closeIco = require("../../../img/close.png");
   const calendarIco = require("../../../img/calendar.png");
-  const unsplash = createApi({
-    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
-  });
 
-  const getDateFormat = (date: string | undefined) => {
+  const formatDate = (date: string | undefined) => {
     if (date) {
       const dat = new Date(date);
       return monthNames[dat.getMonth() - 1] + " " + dat.getFullYear();
@@ -49,9 +46,7 @@ const PhotoDetails = ({
 
   useEffect(() => {
     unsplash.photos.get({ photoId: currentPhotoId }).then((result) => {
-      if (result.errors) {
-        // handle error here
-      } else {
+      if (!result.errors) {
         setDetails(result.response);
       }
     });
@@ -104,7 +99,7 @@ const PhotoDetails = ({
                 <p>
                   {" "}
                   {details?.created_at
-                    ? getDateFormat(details?.created_at)
+                    ? formatDate(details?.created_at)
                     : "Brak informacji"}
                 </p>
               </div>

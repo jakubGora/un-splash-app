@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createApi } from "unsplash-js";
 import Searching from "../Searching/Searching";
-
+import { unsplash } from "../../API/Unsplash";
 import "./Home.css";
 
 interface IHomeComponent {
@@ -11,9 +11,7 @@ interface IHomeComponent {
 const Home = ({ setSearchContent }: IHomeComponent) => {
   const [propos, setPropos] = useState<string[]>([]);
   const [bgPhoto, setBgPhoto] = useState<string | undefined>();
-  const unsplash = createApi({
-    accessKey: "O2KidtvrQddWvNnlKqOsytn-2Qe0kL5IjL5PL70vYDU",
-  });
+
   useEffect(() => {
     unsplash.topics
       .list({
@@ -21,9 +19,7 @@ const Home = ({ setSearchContent }: IHomeComponent) => {
         perPage: 12,
       })
       .then((result) => {
-        if (result.errors) {
-          // handle error here
-        } else {
+        if (!result.errors) {
           setBgPhoto(result.response.results[0].cover_photo?.urls.full);
           setPropos(
             result.response.results
