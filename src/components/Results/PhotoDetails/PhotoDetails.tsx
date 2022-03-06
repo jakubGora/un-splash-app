@@ -16,18 +16,18 @@ const PhotoDetails = ({
   const [details, setDetails] = useState<Full>();
   const [zoom, setZoom] = useState<boolean>(false);
   const monthNames = [
-    "styczeń",
-    "luty",
-    "marzec",
-    "kwiecień",
-    "maj",
-    "czerwiec",
-    "lipiec",
-    "sierpień",
-    "wrzesień",
-    "październik",
-    "listopad",
-    "grudzień",
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień",
   ];
   const likeIco = require("../../../img/like.png");
   const plusIco = require("../../../img/plus (2).png");

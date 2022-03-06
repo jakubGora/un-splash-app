@@ -24,6 +24,7 @@
     margin-bottom: 2rem;
     padding: 1rem;
     font-size: 1.3rem;
+    color: gray;
     button,
     .nr {
       border: 0;
@@ -34,9 +35,10 @@
     }
     button {
       background-color: #dedede;
+      color: gray;
     }
     button:hover {
-      filter: brightness(50%);
+      filter: brightness(80%);
       cursor: pointer;
     }
   }

@@ -98,6 +98,7 @@
   width: 3rem;
   border: 1px solid #dddddd;
   border-radius: 0.2rem;
+  cursor: pointer;
 }
 
 .PhotoDetails div .content .top .buttonsTop button img {
@@ -242,6 +243,7 @@
           justify-content: center;
   margin-left: 0.5rem;
   border: 0;
+  cursor: pointer;
   padding: 0.4rem;
   width: 5rem;
   color: gray;
