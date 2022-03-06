@@ -52,7 +52,6 @@ const PhotoDetails = ({
       if (result.errors) {
         // handle error here
       } else {
-        console.log(result.response);
         setDetails(result.response);
       }
     });

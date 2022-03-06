@@ -15,6 +15,7 @@
 }
 
 .PhotoDetails .X {
+  z-index: 7;
   border-radius: 1rem;
   position: fixed;
   top: 0;
